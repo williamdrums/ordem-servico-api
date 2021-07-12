@@ -31,4 +31,8 @@ public class GestaoOrdemServicoService {
 		ordemServico.setDataAbertura(LocalDateTime.now());
 		return ordemServicoRepository.save(ordemServico);
 	}
+	
+	public void delete(Long ordemServicoId) {
+		ordemServicoRepository.deleteById(ordemServicoId);
+	}
 }
