@@ -5,30 +5,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.ordemservico.domain.ValidationGroups;
+
 import javax.persistence.Id;
 
 @Entity
 public class Cliente {
 
+	@NotNull(groups =  ValidationGroups.ClienteId.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	@Size(max =  60)
 	private String nome;
-	
+
 	@NotBlank
 	@Size(max = 60)
 	private String telefone;
-	
+
 	@NotBlank
 	@Size(max = 255)
 	@Email
 	private String email;
-	
-	
+
+
 	public Long getId() {
 		return id; 
 	}
@@ -53,8 +58,8 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +83,7 @@ public class Cliente {
 			return false;
 		return true;
 	}
-	
-	
-	
+
+
+
 }
