@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.ordemservico.domain.repository.ClienteRepository;
 import com.ordemservico.domain.repository.OrdemServicoRepository;
 import com.ordemservico.domain.service.GestaoOrdemServicoService;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/ordens-servico")
 public class OrdemServicoController {
@@ -60,7 +62,7 @@ public class OrdemServicoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrdemServicoDTO create(@Valid @RequestBody OrdemServico  ordemServico) {
-		return converteModelParaDTO(ordemServico);
+		return converteModelParaDTO(gestaoOrdemServicoService.create(ordemServico));
 	}
 
 	@PutMapping("/{ordemServicoId}")
