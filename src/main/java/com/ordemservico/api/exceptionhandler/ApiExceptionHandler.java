@@ -2,6 +2,7 @@ package com.ordemservico.api.exceptionhandler;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -27,9 +28,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(NegocioException.class)
 	public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request){
-		var status = HttpStatus.BAD_REQUEST;
+		HttpStatus status = HttpStatus.BAD_REQUEST;
 		
-		var error = new ErrorException();
+		ErrorException error = new ErrorException();
 		error.setStatus(status.value());
 		error.setTitulo(ex.getMessage());
 		error.setDataHora(OffsetDateTime.now());
@@ -41,7 +42,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		var mensagemCampos =  new ArrayList<MensagemCampo>();
+		List<MensagemCampo> mensagemCampos =  new ArrayList<MensagemCampo>();
 
 		for(ObjectError error : ex.getBindingResult().getAllErrors()) {
 
@@ -53,7 +54,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 
 		}
 
-		var error  = new  ErrorException();
+		ErrorException error  = new  ErrorException();
 		error.setStatus(status.value());
 		error.setTitulo("Um ou mais campos estão inválidos."+
 				"Faça o preenchimento correto e tente novamente");
