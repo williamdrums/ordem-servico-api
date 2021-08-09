@@ -20,8 +20,16 @@ import javax.validation.groups.Default;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.ordemservico.domain.ValidationGroups;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrdemServico {
 
 	@Id
@@ -49,53 +57,4 @@ public class OrdemServico {
 	
 	@JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataFinalizacao;
-	
-	
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public BigDecimal getPreco() {
-		return preco;
-	}
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
-	public StatusOrdemServico getStatus() {
-		return status;
-	}
-	public void setStatus(StatusOrdemServico status) {
-		this.status = status;
-	}
-	public OffsetDateTime getDataAbertura() {
-		return dataAbertura;
-	}
-	public void setDataAbertura(OffsetDateTime dataAbertura) {
-		this.dataAbertura = dataAbertura;
-	}
-	public OffsetDateTime getDataFinalizacao() {
-		return dataFinalizacao;
-	}
-	public void setDataFinalizacao(OffsetDateTime dataFinalizacao) {
-		this.dataFinalizacao = dataFinalizacao;
-	}
-
-	
-	
-	
 }
